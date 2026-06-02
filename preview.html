@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Katkouta ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #1b1f3a, #050713);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.6;
+  animation: floatStars 10s linear infinite;
+}
+
+@keyframes floatStars {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* card */
+.card {
+  width: 90%;
+  max-width: 520px;
+  padding: 40px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  height: 80px;
+}
+
+button {
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+#yes {
+  background: linear-gradient(45deg, #ff4d8d, #ff79a8);
+  color: white;
+  box-shadow: 0 0 20px rgba(255,77,141,0.5);
+}
+
+#yes:hover {
+  transform: scale(1.05);
+}
+
+#no {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  position: absolute;
+}
+
+/* result */
+#result {
+  display: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+}
+
+/* hearts */
+.heart {
+  position: absolute;
+  color: #ff4d8d;
+  animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1>Katkouta ❤️</h1>
+
+  <p id="text">
+    Every moment with you feels like a beautiful dream.<br><br>
+    So I have just one question for you...
+  </p>
+
+  <div class="buttons">
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 🙈</button>
+  </div>
+</div>
+
+<div class="card" id="result">
+  ❤️ I was sure, Katkouta ❤️<br><br>
+  <span style="font-size:1rem;opacity:0.8;">
+    Forever starts here ✨
+  </span>
+</div>
+
+<script>
+// stars background
+for(let i=0;i<60;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+  star.style.animationDuration=(5+Math.random()*10)+"s";
+  document.body.appendChild(star);
+}
+
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const card=document.getElementById("card");
+const result=document.getElementById("result");
+
+// moving NO button
+noBtn.addEventListener("mouseover",()=>{
+  const x=Math.random()*(window.innerWidth-100);
+  const y=Math.random()*(window.innerHeight-100);
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+});
+
+// YES action
+yesBtn.addEventListener("click",()=>{
+  card.style.display="none";
+  result.style.display="block";
+  createHearts();
+});
+
+// hearts effect
+function createHearts(){
+  setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(10+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),6000);
+  },200);
+}
+</script>
+
+</body>
+</html>
